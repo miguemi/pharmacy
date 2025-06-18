@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Proveedor; // Importar el modelo Proveedor
 use Illuminate\Http\Request;
+use Inertia\Inertia;
 
 class ProveedorController extends Controller
 {
@@ -13,8 +14,11 @@ class ProveedorController extends Controller
     public function index()
     {
         // Obtener todos los proveedores y enviarlos a la vista
+        // dd('llegue');
         $proveedores = Proveedor::all();
-        return view('proveedores.proveedors', compact('proveedores'));
+        return Inertia::render('Proveedor/List', [
+            'proveedores' => $proveedores,
+        ]);
     }
 
     /**
